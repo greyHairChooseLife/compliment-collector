@@ -28,12 +28,17 @@ const getDoc = async () => {
   return doc;
 };
 
+type RowData = {
+  칭찬: string;
+  일자: string;
+};
+
 const getRows = async (sheetName: string) => {
   const doc = await getDoc();
   const sheet = doc.sheetsByTitle[sheetName];
   if (!sheet) throw new Error('No sheet found');
 
-  return await sheet.getRows();
+  return await sheet.getRows<RowData>();
 };
 
 const addRows = async (sheetName: string, value: string) => {
