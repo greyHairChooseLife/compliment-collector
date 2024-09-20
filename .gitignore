@@ -25,3 +25,4 @@ dist-ssr
 
 # 구글 클라우드 API 서비스계정 키 임시 보관
 credential
+lambda.zip
