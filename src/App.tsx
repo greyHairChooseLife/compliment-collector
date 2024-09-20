@@ -1,17 +1,20 @@
 import { useEffect } from 'react';
 import './App.css';
-import { getSheet } from './api/google-sheet';
+import { getRows, addRows } from './api/google-sheet';
 
 function App() {
   useEffect(() => {
-    const loadDoc = async () => {
-      console.log('로딩...');
-      const doc = await getSheet();
-      await doc.loadInfo();
-      console.log('상연:', doc.title);
+    const loadRows = async () => {
+      const rows = await getRows('YtoS');
+      console.log(rows);
     };
 
-    loadDoc();
+    const addRow = async () => {
+      await addRows('YtoS', 'Hello');
+    };
+
+    loadRows();
+    addRow();
   }, []);
 
   return (

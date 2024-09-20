@@ -18,13 +18,30 @@ const getGoogleAuthTokenCached = async () => {
   return cachedToken;
 };
 
-const getSheet = async () => {
+const getDoc = async () => {
   const accessToken = await getGoogleAuthTokenCached();
 
   if (!accessToken) throw new Error('No access token');
   const doc = new GoogleSpreadsheet(SHEET_ID, { token: accessToken });
+  await doc.loadInfo();
 
   return doc;
 };
 
-export { getSheet };
+const getRows = async (sheetName: string) => {
+  const doc = await getDoc();
+  const sheet = doc.sheetsByTitle[sheetName];
+  if (!sheet) throw new Error('No sheet found');
+
+  return await sheet.getRows();
+};
+
+const addRows = async (sheetName: string, value: string) => {
+  const doc = await getDoc();
+  const sheet = doc.sheetsByTitle[sheetName];
+  if (!sheet) throw new Error('No sheet found');
+
+  await sheet.addRow({ 칭찬: value, 일자: new Date().toISOString() });
+};
+
+export { getRows, addRows };
