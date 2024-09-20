@@ -26,3 +26,7 @@ dist-ssr
 # 구글 클라우드 API 서비스계정 키 임시 보관
 credential
 lambda.zip
+
+# 증분 빌드: 바뀐 부분만 빌드하기 위한 기록
+tsconfig.app.tsbuildinfo
+tsconfig.node.tsbuildinfo
