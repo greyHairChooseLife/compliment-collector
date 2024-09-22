@@ -28,9 +28,10 @@ const getDoc = async () => {
   return doc;
 };
 
-type RowData = {
+type ReadingRowData = {
   칭찬: string;
   일자: string;
+  한국기준시: string;
 };
 
 const getRows = async (sheetName: string) => {
@@ -38,7 +39,7 @@ const getRows = async (sheetName: string) => {
   const sheet = doc.sheetsByTitle[sheetName];
   if (!sheet) throw new Error('No sheet found');
 
-  return await sheet.getRows<RowData>();
+  return await sheet.getRows<ReadingRowData>();
 };
 
 const addRows = async (sheetName: string, value: string) => {

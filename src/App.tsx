@@ -3,7 +3,9 @@ import './App.css';
 import { getRows, addRows } from './api/google-sheet';
 
 type Record = {
-  date: string;
+  origin_date: string;
+  local_date: string;
+  show_date: string;
   praise: string;
 };
 
@@ -20,12 +22,32 @@ function App() {
       const rightRows = await getRows('StoY'); // 상연 -> 유진
 
       const leftRecords = leftRows.map((row) => ({
-        date: row.get('일자'),
+        origin_date: row.get('일자'),
+        local_date: row.get('한국기준시'),
+        show_date: row
+          .get('한국기준시')
+          .split(' ')
+          .map((v: string, i: number) =>
+            i === 0
+              ? v.substring(2).replace(/-/g, '/')
+              : v.slice(0, 2).concat('시'),
+          )
+          .join(' '),
         praise: row.get('칭찬'),
       }));
 
       const rightRecords = rightRows.map((row) => ({
-        date: row.get('일자'),
+        origin_date: row.get('일자'),
+        local_date: row.get('한국기준시'),
+        show_date: row
+          .get('한국기준시')
+          .split(' ')
+          .map((v: string, i: number) =>
+            i === 0
+              ? v.substring(2).replace(/-/g, '/')
+              : v.slice(0, 2).concat('시'),
+          )
+          .join(' '),
         praise: row.get('칭찬'),
       }));
 
@@ -88,10 +110,10 @@ function App() {
           <h3>to 상연</h3>
           {reloadRecords && <p>Loading...</p>}
           {leftRecords.map((record) => (
-            <div key={record.date + record.praise}>
+            <div key={record.origin_date + record.praise}>
               <p>
                 {record.praise}
-                <i> _ {record.date}</i>
+                <i> _ {record.show_date}</i>
               </p>
             </div>
           ))}
@@ -100,10 +122,10 @@ function App() {
           <h3>to 유진</h3>
           {reloadRecords && <p>Loading...</p>}
           {rightRecords.map((record) => (
-            <div key={record.date + record.praise}>
+            <div key={record.origin_date + record.praise}>
               <p>
                 {record.praise}
-                <i> _ {record.date}</i>
+                <i> _ {record.show_date}</i>
               </p>
             </div>
           ))}
