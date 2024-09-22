@@ -1,42 +1,41 @@
 #root {
-  max-width: 1280px;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 2rem;
+}
+
+h2 {
   text-align: center;
+  margin-top: 5vh;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.writing-praise {
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin-top: 2em;
+  width: 80%;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.writing-praise h3 {
+  margin: 0;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.writing-praise textarea {
+  width: 100%;
+  min-height: 10rem;
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5em;
+  resize: none;
+  background-color: #3d444f;
+  scrollbar-width: none;
 }
 
-.card {
-  padding: 2em;
+.writing-praise button {
+  width: 100%;
 }
 
-.read-the-docs {
-  color: #888;
+.history {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
 }

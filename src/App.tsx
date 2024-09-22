@@ -72,7 +72,7 @@ function App() {
   };
 
   const onChangePrase = (
-    e: React.ChangeEvent<HTMLInputElement>,
+    e: React.ChangeEvent<HTMLTextAreaElement>,
     sheetName: string,
   ) => {
     if (sheetName === 'YtoS') setLeftNewPraise(e.target.value);
@@ -83,29 +83,21 @@ function App() {
     <>
       <h2>오늘의 칭찬</h2>
       <div>
-        <div>
-          <label>유진 작성: </label>
-          <input
-            type="text"
-            placeholder="칭찬을 입력하세요"
-            value={leftNewPraise}
-            onChange={(e) => onChangePrase(e, 'YtoS')}
-          />
-          <button onClick={() => addPraise('YtoS')}>업로드</button>
-        </div>
-        <div>
-          <label>상연 작성: </label>
-          <input
-            type="text"
-            placeholder="칭찬을 입력하세요"
-            value={rightNewPraise}
-            onChange={(e) => onChangePrase(e, 'StoY')}
-          />
-          <button onClick={() => addPraise('StoY')}>업로드</button>
-        </div>
+        <WritingPraise
+          newPraise={leftNewPraise}
+          addPraise={addPraise}
+          onChangePrase={onChangePrase}
+          who="YtoS"
+        />
+        <WritingPraise
+          newPraise={rightNewPraise}
+          addPraise={addPraise}
+          onChangePrase={onChangePrase}
+          who="StoY"
+        />
       </div>
       <h2>그간의 기록</h2>
-      <div>
+      <div className="history">
         <div>
           <h3>to 상연</h3>
           {reloadRecords && <p>Loading...</p>}
@@ -134,5 +126,34 @@ function App() {
     </>
   );
 }
+
+type WritingPraiseProps = {
+  newPraise: string;
+  addPraise: (sheetName: string) => void;
+  onChangePrase: (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+    sheetName: string,
+  ) => void;
+  who: 'YtoS' | 'StoY';
+};
+
+const WritingPraise = ({
+  newPraise,
+  addPraise,
+  onChangePrase,
+  who,
+}: WritingPraiseProps) => {
+  return (
+    <div className="writing-praise">
+      <h3>{who === 'YtoS' ? '유진' : '상연'} 작성: </h3>
+      <textarea
+        placeholder="칭찬을 입력하세요"
+        value={newPraise}
+        onChange={(e) => onChangePrase(e, who)}
+      />
+      <button onClick={() => addPraise(who)}>업로드</button>
+    </div>
+  );
+};
 
 export default App;
