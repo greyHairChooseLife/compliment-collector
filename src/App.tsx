@@ -96,7 +96,7 @@ function App() {
           who="StoY"
         />
       </div>
-      <h2>그간의 기록</h2>
+      <h2 className="history-header">그간의 기록</h2>
       <div className="history">
         <div>
           <h3>to 상연</h3>

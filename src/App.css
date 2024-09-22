@@ -1,11 +1,11 @@
 #root {
   max-width: 1000px;
   margin: 0 auto;
+  margin-top: 3vh;
 }
 
 h2 {
   text-align: center;
-  margin-top: 5vh;
 }
 
 .writing-praise {
@@ -34,8 +34,18 @@ h2 {
   width: 100%;
 }
 
+.history-header {
+  margin-top: 15vh;
+}
+
 .history {
   width: 100%;
+  padding: 0 1.5rem;
   display: flex;
   flex-direction: column;
+}
+
+.history p {
+  line-height: 1.5;
+  font-size: 1rem;
 }
