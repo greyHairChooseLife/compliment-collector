@@ -178,32 +178,33 @@ const ReadingPraise = ({ records, reloadRecords, who }: ReadingPraiseProps) => {
       {reloadRecords && <p>Loading...</p>}
       {lastRecord && (
         <div className="reading-last-praise">
-          <p>
-            <b>( {lastRecord.dayPassed} ) </b>
-            {lastRecord.praise}
-          </p>
+          <b>( {lastRecord.dayPassed} ) </b>
+          <span>{lastRecord.praise}</span>
         </div>
       )}
-      <div className="fold-btn">
+      <button className="fold-btn" onClick={toggleFold}>
         {isFold ? (
-          <button onClick={toggleFold}>
+          <>
             더 보기 <IoIosArrowDown />
-          </button>
+          </>
         ) : (
-          <button onClick={toggleFold}>
+          <>
             접기 <IoIosArrowUp />
-          </button>
+          </>
         )}
-      </div>
-      {isFold ||
-        reversedRecords.map((record) => (
-          <div key={record.origin_date + record.praise}>
-            <p>
-              {record.praise}
-              <i> _ {record.show_date}</i>
-            </p>
-          </div>
-        ))}
+      </button>
+      {isFold || (
+        <div className="old-history">
+          {reversedRecords.map((record) => (
+            <div key={record.origin_date + record.praise}>
+              <p>
+                {record.praise}
+                <i> _ {record.show_date}</i>
+              </p>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

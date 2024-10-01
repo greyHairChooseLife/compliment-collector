@@ -51,14 +51,24 @@ h2 {
   font-size: 1rem;
 }
 
+.reading-last-praise span {
+  text-decoration: underline;
+}
 .reading-last-praise b {
   font-size: 0.8rem;
+  text-decoration: none;
 }
 
-.fold-btn button {
+.fold-btn {
   width: 30%;
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 0 auto;
+  margin: 1rem auto;
+}
+
+.old-history {
+  background-color: #3d444f;
+  padding: 0.1rem 1.2rem;
+  margin-top: 1rem;
 }
