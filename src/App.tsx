@@ -98,30 +98,16 @@ function App() {
       </div>
       <h2 className="history-header">그간의 기록</h2>
       <div className="history">
-        <div>
-          <h3>to 상연</h3>
-          {reloadRecords && <p>Loading...</p>}
-          {leftRecords.map((record) => (
-            <div key={record.origin_date + record.praise}>
-              <p>
-                {record.praise}
-                <i> _ {record.show_date}</i>
-              </p>
-            </div>
-          ))}
-        </div>
-        <div>
-          <h3>to 유진</h3>
-          {reloadRecords && <p>Loading...</p>}
-          {rightRecords.map((record) => (
-            <div key={record.origin_date + record.praise}>
-              <p>
-                {record.praise}
-                <i> _ {record.show_date}</i>
-              </p>
-            </div>
-          ))}
-        </div>
+        <ReadingPraise
+          records={leftRecords}
+          reloadRecords={reloadRecords}
+          who="YtoS"
+        />
+        <ReadingPraise
+          records={rightRecords}
+          reloadRecords={reloadRecords}
+          who="StoY"
+        />
       </div>
     </>
   );
@@ -152,6 +138,29 @@ const WritingPraise = ({
         onChange={(e) => onChangePrase(e, who)}
       />
       <button onClick={() => addPraise(who)}>업로드</button>
+    </div>
+  );
+};
+
+type ReadingPraiseProps = {
+  records: Record[];
+  reloadRecords: boolean;
+  who: 'YtoS' | 'StoY';
+};
+
+const ReadingPraise = ({ records, reloadRecords, who }: ReadingPraiseProps) => {
+  return (
+    <div className="reading-praise">
+      <h3>to {who === 'YtoS' ? '상연' : '유진'}</h3>
+      {reloadRecords && <p>Loading...</p>}
+      {records.map((record) => (
+        <div key={record.origin_date + record.praise}>
+          <p>
+            {record.praise}
+            <i> _ {record.show_date}</i>
+          </p>
+        </div>
+      ))}
     </div>
   );
 };
