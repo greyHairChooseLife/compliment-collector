@@ -148,7 +148,11 @@ type ReadingPraiseProps = {
   who: 'YtoS' | 'StoY';
 };
 
+import { IoIosArrowDown } from 'react-icons/io';
+import { IoIosArrowUp } from 'react-icons/io';
 const ReadingPraise = ({ records, reloadRecords, who }: ReadingPraiseProps) => {
+  const [isFold, setIsFold] = useState(true);
+
   const getDayPassed = (date: string) => {
     const now = new Date();
     const past = new Date(date);
@@ -164,6 +168,10 @@ const ReadingPraise = ({ records, reloadRecords, who }: ReadingPraiseProps) => {
     reversedRecords.length > 0 ? reversedRecords.shift() : null;
   if (lastRecord) lastRecord.dayPassed = getDayPassed(lastRecord.origin_date);
 
+  const toggleFold = () => {
+    setIsFold(!isFold);
+  };
+
   return (
     <div className="reading-praise">
       <h3>to {who === 'YtoS' ? '상연' : '유진'}</h3>
@@ -176,14 +184,26 @@ const ReadingPraise = ({ records, reloadRecords, who }: ReadingPraiseProps) => {
           </p>
         </div>
       )}
-      {reversedRecords.map((record) => (
-        <div key={record.origin_date + record.praise}>
-          <p>
-            {record.praise}
-            <i> _ {record.show_date}</i>
-          </p>
-        </div>
-      ))}
+      <div className="fold-btn">
+        {isFold ? (
+          <button onClick={toggleFold}>
+            더 보기 <IoIosArrowDown />
+          </button>
+        ) : (
+          <button onClick={toggleFold}>
+            접기 <IoIosArrowUp />
+          </button>
+        )}
+      </div>
+      {isFold ||
+        reversedRecords.map((record) => (
+          <div key={record.origin_date + record.praise}>
+            <p>
+              {record.praise}
+              <i> _ {record.show_date}</i>
+            </p>
+          </div>
+        ))}
     </div>
   );
 };

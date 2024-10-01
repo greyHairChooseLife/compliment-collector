@@ -54,3 +54,11 @@ h2 {
 .reading-last-praise b {
   font-size: 0.8rem;
 }
+
+.fold-btn button {
+  width: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+}
