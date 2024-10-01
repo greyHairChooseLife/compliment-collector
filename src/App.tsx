@@ -149,11 +149,34 @@ type ReadingPraiseProps = {
 };
 
 const ReadingPraise = ({ records, reloadRecords, who }: ReadingPraiseProps) => {
+  const getDayPassed = (date: string) => {
+    const now = new Date();
+    const past = new Date(date);
+    now.setHours(0, 0, 0, 0);
+    past.setHours(0, 0, 0, 0);
+    const diff = now.getTime() - past.getTime();
+    const day = Math.floor(diff / (1000 * 60 * 60 * 24));
+    return day > 0 ? `${day}일 전` : '오늘';
+  };
+
+  const reversedRecords = [...records].reverse();
+  const lastRecord: undefined | null | (Record & { dayPassed?: string }) =
+    reversedRecords.length > 0 ? reversedRecords.shift() : null;
+  if (lastRecord) lastRecord.dayPassed = getDayPassed(lastRecord.origin_date);
+
   return (
     <div className="reading-praise">
       <h3>to {who === 'YtoS' ? '상연' : '유진'}</h3>
       {reloadRecords && <p>Loading...</p>}
-      {records.map((record) => (
+      {lastRecord && (
+        <div className="reading-last-praise">
+          <p>
+            <b>( {lastRecord.dayPassed} ) </b>
+            {lastRecord.praise}
+          </p>
+        </div>
+      )}
+      {reversedRecords.map((record) => (
         <div key={record.origin_date + record.praise}>
           <p>
             {record.praise}
