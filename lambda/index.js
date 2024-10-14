@@ -19,6 +19,11 @@ export const handler = async () => {
     // 클라이언트에 토큰 전달
     return {
       statusCode: 200,
+      headers: {
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Origin': 'https://greyhairchooselife.github.io',
+        'Access-Control-Allow-Methods': 'GET, OPTIONS', // OPTIONS을 추가하지 않으면 CORS 오류 발생
+      },
       body: JSON.stringify({
         access_token: tokens.access_token, // 액세스 토큰 전달
         expires_in: tokens.expiry_date - Date.now() / 1000, // 토큰 만료 시간
