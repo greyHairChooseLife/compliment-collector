@@ -62,9 +62,17 @@ function App() {
 
   const addPraise = async (sheetName: string) => {
     if (sheetName === 'YtoS') {
+      if (leftNewPraise === '') {
+        window.alert('칭찬을 입력하세요');
+        return;
+      }
       await addRows(sheetName, leftNewPraise);
       setLeftNewPraise('');
     } else {
+      if (rightNewPraise === '') {
+        window.alert('칭찬을 입력하세요');
+        return;
+      }
       await addRows(sheetName, rightNewPraise);
       setRightNewPraise('');
     }
