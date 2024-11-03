@@ -187,7 +187,7 @@ const ReadingPraise = ({ records, reloadRecords, who }: ReadingPraiseProps) => {
       {lastRecord && (
         <div className="reading-last-praise">
           <b>( {lastRecord.dayPassed} ) </b>
-          <span>{lastRecord.praise}</span>
+          <pre>{lastRecord.praise}</pre>
         </div>
       )}
       <button className="fold-btn" onClick={toggleFold}>

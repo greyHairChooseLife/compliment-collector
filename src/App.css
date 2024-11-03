@@ -50,9 +50,11 @@ h2 {
   line-height: 1.5;
   font-size: 1rem;
 }
-
-.reading-last-praise span {
+.reading-last-praise pre {
+  font-size: 1rem;
+  white-space: pre-wrap;
 }
+
 .reading-last-praise b {
   font-size: 0.8rem;
   text-decoration: none;
