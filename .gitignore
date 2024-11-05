@@ -30,3 +30,5 @@ lambda.zip
 # 증분 빌드: 바뀐 부분만 빌드하기 위한 기록
 tsconfig.app.tsbuildinfo
 tsconfig.node.tsbuildinfo
+.aider*
+.env
