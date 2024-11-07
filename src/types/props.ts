@@ -1,5 +1,5 @@
 import { ChangeEvent } from 'react';
-import { Record } from '.';
+import { User, Record } from '.';
 
 export type WritingPraiseProps = {
   newPraise: string;
@@ -8,11 +8,11 @@ export type WritingPraiseProps = {
     e: ChangeEvent<HTMLTextAreaElement>,
     sheetName: string,
   ) => void;
-  who: 'YtoS' | 'StoY';
+  who: User;
 };
 
 export type ReadingPraiseProps = {
   records: Record[];
   reloadRecords: boolean;
-  who: 'YtoS' | 'StoY';
+  who: User;
 };
