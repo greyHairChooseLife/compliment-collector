@@ -1,13 +1,9 @@
 import { useState, useEffect } from 'react';
-import './App.css';
 import { getRows, addRows } from './api/google-sheet';
-import {
-  Record,
-  IsWritable,
-  WritingPraiseProps,
-  ReadingPraiseProps,
-} from './types';
 import { isWritable } from './features';
+import { ReadingPraise, WritingPraise } from './components';
+import './App.css';
+import { Record, IsWritable } from './types';
 
 function App() {
   const [leftRecords, setLeftRecords] = useState<Record[]>([]);
@@ -138,85 +134,5 @@ function App() {
     </>
   );
 }
-
-const WritingPraise = ({
-  newPraise,
-  addPraise,
-  onChangePrase,
-  who,
-}: WritingPraiseProps) => {
-  return (
-    <div className="writing-praise">
-      <h3>{who === 'YtoS' ? '유진' : '상연'} 작성: </h3>
-      <textarea
-        placeholder="칭찬을 입력하세요"
-        value={newPraise}
-        onChange={(e) => onChangePrase(e, who)}
-      />
-      <button onClick={() => addPraise(who)}>업로드</button>
-    </div>
-  );
-};
-
-import { IoIosArrowDown } from 'react-icons/io';
-import { IoIosArrowUp } from 'react-icons/io';
-const ReadingPraise = ({ records, reloadRecords, who }: ReadingPraiseProps) => {
-  const [isFold, setIsFold] = useState(true);
-
-  const getDayPassed = (date: string) => {
-    const now = new Date();
-    const past = new Date(date);
-    now.setHours(0, 0, 0, 0);
-    past.setHours(0, 0, 0, 0);
-    const diff = now.getTime() - past.getTime();
-    const day = Math.floor(diff / (1000 * 60 * 60 * 24));
-    return day > 0 ? `${day}일 전` : '오늘';
-  };
-
-  const reversedRecords = [...records].reverse();
-  const lastRecord: undefined | null | (Record & { dayPassed?: string }) =
-    reversedRecords.length > 0 ? reversedRecords.shift() : null;
-  if (lastRecord) lastRecord.dayPassed = getDayPassed(lastRecord.origin_date);
-
-  const toggleFold = () => {
-    setIsFold(!isFold);
-  };
-
-  return (
-    <div className="reading-praise">
-      <h3>to {who === 'YtoS' ? '상연' : '유진'}</h3>
-      {reloadRecords && <p>Loading...</p>}
-      {lastRecord && (
-        <div className="reading-last-praise">
-          <b>( {lastRecord.dayPassed} ) </b>
-          <pre>{lastRecord.praise}</pre>
-        </div>
-      )}
-      <button className="fold-btn" onClick={toggleFold}>
-        {isFold ? (
-          <>
-            더 보기 <IoIosArrowDown />
-          </>
-        ) : (
-          <>
-            접기 <IoIosArrowUp />
-          </>
-        )}
-      </button>
-      {isFold || (
-        <div className="old-history">
-          {reversedRecords.map((record) => (
-            <div key={record.origin_date + record.praise}>
-              <p>
-                {record.praise}
-                <i> _ {record.show_date}</i>
-              </p>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  );
-};
 
 export default App;
