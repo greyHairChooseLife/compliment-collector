@@ -1,7 +1,12 @@
 import { useState, useEffect } from 'react';
 import './App.css';
 import { getRows, addRows } from './api/google-sheet';
-import { Record, IsWritable } from './types';
+import {
+  Record,
+  IsWritable,
+  WritingPraiseProps,
+  ReadingPraiseProps,
+} from './types';
 import { isWritable } from './features';
 
 function App() {
@@ -134,16 +139,6 @@ function App() {
   );
 }
 
-type WritingPraiseProps = {
-  newPraise: string;
-  addPraise: (sheetName: string) => void;
-  onChangePrase: (
-    e: React.ChangeEvent<HTMLTextAreaElement>,
-    sheetName: string,
-  ) => void;
-  who: 'YtoS' | 'StoY';
-};
-
 const WritingPraise = ({
   newPraise,
   addPraise,
@@ -161,12 +156,6 @@ const WritingPraise = ({
       <button onClick={() => addPraise(who)}>업로드</button>
     </div>
   );
-};
-
-type ReadingPraiseProps = {
-  records: Record[];
-  reloadRecords: boolean;
-  who: 'YtoS' | 'StoY';
 };
 
 import { IoIosArrowDown } from 'react-icons/io';
