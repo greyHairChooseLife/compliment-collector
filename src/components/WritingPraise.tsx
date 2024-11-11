@@ -10,7 +10,7 @@ const WritingPraise = ({
     <div className="writing-praise">
       <h3>{who === 'YtoS' ? '유진' : '상연'} 작성: </h3>
       <textarea
-        placeholder="칭찬을 입력하세요"
+        placeholder="감사을 입력하세요"
         value={newPraise}
         onChange={(e) => onChangePrase(e, who)}
       />

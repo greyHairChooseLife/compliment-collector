@@ -29,7 +29,7 @@ const getDoc = async () => {
 };
 
 type ReadingRowData = {
-  칭찬: string;
+  감사: string;
   일자: string;
   한국기준시: string;
 };
@@ -47,7 +47,7 @@ const addRows = async (sheetName: string, value: string) => {
   const sheet = doc.sheetsByTitle[sheetName];
   if (!sheet) throw new Error('No sheet found');
 
-  await sheet.addRow({ 칭찬: value, 일자: new Date().toISOString() });
+  await sheet.addRow({ 감사: value, 일자: new Date().toISOString() });
 };
 
 export { getRows, addRows };

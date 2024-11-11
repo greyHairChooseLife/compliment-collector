@@ -16,7 +16,7 @@ function App() {
 
   return (
     <>
-      <h2>오늘의 칭찬</h2>
+      <h2>오늘의 감사</h2>
       <div>
         {areWritables.leftPraise ? (
           <WritingPraise

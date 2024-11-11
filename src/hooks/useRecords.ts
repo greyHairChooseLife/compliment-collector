@@ -28,7 +28,7 @@ const useRecords = () => {
               : v.slice(0, 2).concat('시'),
           )
           .join(' '),
-        praise: row.get('칭찬'),
+        praise: row.get('감사'),
       }));
 
       const rightRecords = rightRows.map((row) => ({
@@ -43,7 +43,7 @@ const useRecords = () => {
               : v.slice(0, 2).concat('시'),
           )
           .join(' '),
-        praise: row.get('칭찬'),
+        praise: row.get('감사'),
       }));
 
       setAreWritables({
@@ -63,14 +63,14 @@ const useRecords = () => {
   const addPraise = async (sheetName: string) => {
     if (sheetName === 'YtoS') {
       if (leftNewPraise === '') {
-        window.alert('칭찬을 입력하세요');
+        window.alert('감사을 입력하세요');
         return;
       }
       await addRows(sheetName, leftNewPraise);
       setLeftNewPraise('');
     } else {
       if (rightNewPraise === '') {
-        window.alert('칭찬을 입력하세요');
+        window.alert('감사을 입력하세요');
         return;
       }
       await addRows(sheetName, rightNewPraise);
