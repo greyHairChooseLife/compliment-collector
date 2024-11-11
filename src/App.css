@@ -1,3 +1,17 @@
+.user-selector {
+  margin: 20px 0;
+  padding: 10px;
+  border-radius: 4px;
+}
+
+.user-selector label {
+  margin-right: 20px;
+  cursor: pointer;
+}
+
+.user-selector input[type='radio'] {
+  margin-right: 8px;
+}
 #root {
   max-width: 1000px;
   margin: 0 auto;

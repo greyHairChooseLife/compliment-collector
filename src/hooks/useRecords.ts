@@ -21,7 +21,7 @@ const useRecords = () => {
         local_date: row.get('한국기준시'),
         show_date: row
           .get('한국기준시')
-          .split(' ')
+          ?.split(' ')
           .map((v: string, i: number) =>
             i === 0
               ? v.substring(2).replace(/-/g, '/')
@@ -36,7 +36,7 @@ const useRecords = () => {
         local_date: row.get('한국기준시'),
         show_date: row
           .get('한국기준시')
-          .split(' ')
+          ?.split(' ')
           .map((v: string, i: number) =>
             i === 0
               ? v.substring(2).replace(/-/g, '/')
