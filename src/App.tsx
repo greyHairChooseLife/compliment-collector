@@ -63,16 +63,33 @@ function App() {
       )}
       <h2 className="history-header">그간의 기록</h2>
       <div className="history">
-        <ReadingPraise
-          records={leftRecords}
-          reloadRecords={reloadRecords}
-          who="YtoS"
-        />
-        <ReadingPraise
-          records={rightRecords}
-          reloadRecords={reloadRecords}
-          who="StoY"
-        />
+        {currentUser === 'YtoS' ? (
+          <>
+            <ReadingPraise
+              records={rightRecords}
+              reloadRecords={reloadRecords}
+              who="StoY"
+            />
+            <ReadingPraise
+              records={leftRecords}
+              reloadRecords={reloadRecords}
+              who="YtoS"
+            />
+          </>
+        ) : (
+          <>
+            <ReadingPraise
+              records={leftRecords}
+              reloadRecords={reloadRecords}
+              who="YtoS"
+            />
+            <ReadingPraise
+              records={rightRecords}
+              reloadRecords={reloadRecords}
+              who="StoY"
+            />
+          </>
+        )}
       </div>
     </>
   );
