@@ -3,7 +3,7 @@ import { User, Record } from '.';
 
 export type WritingPraiseProps = {
   newPraise: string;
-  addPraise: (sheetName: string) => void;
+  addPraise: (sheetName: string) => Promise<{ success: boolean } | undefined>;
   onChangePrase: (
     e: ChangeEvent<HTMLTextAreaElement>,
     sheetName: string,

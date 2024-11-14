@@ -67,16 +67,17 @@ const useRecords = () => {
         return;
       }
       await addRows(sheetName, leftNewPraise);
-      setLeftNewPraise('');
     } else {
       if (rightNewPraise === '') {
         window.alert('감사을 입력하세요');
         return;
       }
       await addRows(sheetName, rightNewPraise);
-      setRightNewPraise('');
     }
+    setRightNewPraise('');
+    setLeftNewPraise('');
     setReloadRecords(true);
+    return { success: true };
   };
 
   const onChangePrase = (
